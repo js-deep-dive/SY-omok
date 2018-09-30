@@ -7,10 +7,25 @@ class App extends Component {
     super(props);
     this.state = {
       size: 16,
-      borad: Array(16 * 16).fill(null) // create 16 by 16 board.
+      borad: Array.from(Array(16), () => Array(16).fill(null)), // 2d array
+      selctedRow: null, // 필요 없을 수도 ?
+      selctedCol: null,
+      turn: "black" //blakc first
     };
   }
+  handleClick = (row, col) => {
+    console.log("selected", row, col);
+    let changeBoard = this.state.borad;
+    console.log(this.state);
+    changeBoard[row][col] = this.state.turn;
 
+    this.setState({
+      selctedRow: row,
+      selctedCol: col,
+      borad: changeBoard,
+      turn: this.state.turn === "black" ? "white" : "black"
+    });
+  };
   render() {
     return (
       <div className="App">
@@ -21,19 +36,36 @@ class App extends Component {
         <p className="App-intro">Soyoung's first react project</p>
 
         <div className="Omok">
-          {Array(this.state.size)
-            .fill(null)
-            .map(row => {
-              return (
-                <div className="row">
-                  {Array(this.state.size)
-                    .fill(null)
-                    .map(col => {
-                      return <div className="col" />;
-                    })}
-                </div>
-              );
-            })}
+          {/* generate an array of numbers  */}
+          {Array.from(Array(this.state.size), (_, x) => x).map(row => {
+            return (
+              <div className="row">
+                {Array.from(Array(this.state.size), (_, y) => y).map(col => {
+                  return (
+                    <div
+                      className="col"
+                      onClick={() => {
+                        this.handleClick(row, col);
+                      }}
+                    >
+                      {console.log("color", this.state.turn)}
+                      {this.state.borad[row][col] ? (
+                        <span
+                          className="col__stone"
+                          style={{
+                            backgroundColor:
+                              this.state.turn === "black"
+                                ? "#000000"
+                                : "#ffffff"
+                          }}
+                        />
+                      ) : null}
+                    </div>
+                  );
+                })}
+              </div>
+            );
+          })}
         </div>
       </div>
     );

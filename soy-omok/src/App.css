@@ -45,3 +45,10 @@
   background-position: center;
   display: inline-flex;
 }
+.col__stone {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 100%;
+  display: block;
+  margin: auto;
+}
