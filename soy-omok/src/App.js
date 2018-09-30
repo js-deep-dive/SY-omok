@@ -54,7 +54,7 @@ class App extends Component {
                           className="col__stone"
                           style={{
                             backgroundColor:
-                              this.state.turn === "black"
+                              this.state.borad[row][col] === "black"
                                 ? "#000000"
                                 : "#ffffff"
                           }}
