@@ -23,6 +23,25 @@
 }
 
 @keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Custom CSS */
+/* TODO : SASS... T.T */
+.row {
+  display: flex;
+}
+.col {
+  background-image: url("./cell.png");
+  height: 3rem;
+  width: 3rem;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  display: inline-flex;
 }
