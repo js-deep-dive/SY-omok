@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { checkVerticalWinner } from "./util/helper";
 import logo from "./logo.svg";
 import "./App.css";
 
@@ -13,10 +14,16 @@ class App extends Component {
       turn: "black" //blakc first
     };
   }
+  componentDidUpdate() {
+    if (this.checkWinner()) console.log("winnner");
+  }
   handleClick = (row, col) => {
     console.log("selected", row, col);
     let changeBoard = this.state.borad;
-    console.log(this.state);
+    //alreay fill, return;
+    if (changeBoard[row][col]) {
+      return;
+    }
     changeBoard[row][col] = this.state.turn;
 
     this.setState({
@@ -25,6 +32,16 @@ class App extends Component {
       borad: changeBoard,
       turn: this.state.turn === "black" ? "white" : "black"
     });
+  };
+  checkWinner = () => {
+    //아마 turn 은 반대로 넣어주어야 겠구나...
+
+    const { size, turn, borad, selctedRow, selctedCol } = this.state;
+    const prevTurn = turn === "black" ? "white" : "black";
+    console.log("prevTurn  ", prevTurn);
+    if (checkVerticalWinner(borad, prevTurn, selctedRow, selctedCol, size))
+      return true;
+    else return false;
   };
   render() {
     return (
@@ -48,7 +65,6 @@ class App extends Component {
                         this.handleClick(row, col);
                       }}
                     >
-                      {console.log("color", this.state.turn)}
                       {this.state.borad[row][col] ? (
                         <span
                           className="col__stone"
