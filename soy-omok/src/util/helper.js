@@ -156,6 +156,6 @@ export const checkAsecDiagoWinner = (
   ) {
     if (boardState[i][j] && boardState[i][j] === stoneColor) checkFive++;
   }
-  console.log("five check", checkFive);
+  //console.log("five check", checkFive);
   return checkFive === 5 ? true : false;
 };
