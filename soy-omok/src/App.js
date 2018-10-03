@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import {
   checkVerticalWinner,
   checkHorizontalWinner,
-  checkDiagonalWinner
+  checkDescDiagonalWinner,
+  checkAsecDiagoWinner
 } from "./util/helper";
 import logo from "./logo.svg";
 import "./App.css";
@@ -59,11 +60,12 @@ class App extends Component {
       pikaWinCount
     } = this.state;
     const prevTurn = turn === "black" ? "white" : "black";
-    console.log("prevTurn  ", prevTurn);
+    //console.log("prevTurn  ", prevTurn);
     if (
       checkVerticalWinner(borad, prevTurn, selctedRow, selctedCol, size) ||
       checkHorizontalWinner(borad, prevTurn, selctedRow, selctedCol, size) ||
-      checkDiagonalWinner(borad, prevTurn, selctedRow, selctedCol, size)
+      checkDescDiagonalWinner(borad, prevTurn, selctedRow, selctedCol, size) ||
+      checkAsecDiagoWinner(borad, prevTurn, selctedRow, selctedCol, size)
     ) {
       if (prevTurn === "black") {
         this.setState({
