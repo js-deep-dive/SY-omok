@@ -1,16 +1,16 @@
-import React, { Component } from "react";
+import React, { Component } from "react"
 import {
   checkVerticalWinner,
   checkHorizontalWinner,
   checkDescDiagonalWinner,
   checkAsecDiagoWinner
-} from "./util/helper";
-import logo from "./logo.svg";
-import "./App.css";
-import pikaStone from "./pika.png";
-import jmbStone from "./jmb.png";
-import jmbWin from "./jmbWin.png";
-import pikaWin from "./pikaWin.png";
+} from "./util/helper"
+import logo from "./logo.svg"
+import "./App.css"
+import pikaStone from "./pika.png"
+import jmbStone from "./jmb.png"
+import jmbWin from "./jmbWin.png"
+import pikaWin from "./pikaWin.png"
 //TODO : black -> jmb , white -> pika
 const initialState = {
   size: 16,
@@ -21,32 +21,34 @@ const initialState = {
   jmbWinCount: false,
   pikaWinCount: false,
   reset: true
-};
+}
 class App extends Component {
   constructor(props) {
-    super(props);
-    this.state = initialState;
+    super(props)
+    this.state = initialState
   }
   componentDidUpdate(prevProps, prevState) {
-    if (prevState.turn !== this.state.turn) this.checkWinner();
+    if (prevState.turn !== this.state.turn) this.checkWinner()
   }
   handleClick = (row, col) => {
-    console.log("selected", row, col);
-    let changeBoard = this.state.borad;
+    console.log("selected", row, col)
+    let changeBoard = this.state.borad
     //alreay fill, return;
     if (changeBoard[row][col]) {
-      return;
+      return
     }
-    changeBoard[row][col] = this.state.turn;
+    changeBoard[row][col] = this.state.turn
 
-    this.setState({
-      reset: false,
-      selctedRow: row,
-      selctedCol: col,
-      borad: changeBoard,
-      turn: this.state.turn === "black" ? "white" : "black"
-    });
-  };
+    this.setState(prevState => {
+      return {
+        reset: false,
+        selctedRow: row,
+        selctedCol: col,
+        borad: prevState.slice(0, row),
+        turn: prevState.turn === "black" ? "white" : "black"
+      }
+    })
+  }
   checkWinner = () => {
     //아마 turn 은 반대로 넣어주어야 겠구나...
 
@@ -58,8 +60,8 @@ class App extends Component {
       selctedCol,
       jmbWinCount,
       pikaWinCount
-    } = this.state;
-    const prevTurn = turn === "black" ? "white" : "black";
+    } = this.state
+    const prevTurn = turn === "black" ? "white" : "black"
     //console.log("prevTurn  ", prevTurn);
     if (
       checkVerticalWinner(borad, prevTurn, selctedRow, selctedCol, size) ||
@@ -70,14 +72,14 @@ class App extends Component {
       if (prevTurn === "black") {
         this.setState({
           jmbWinCount: true
-        });
+        })
       } else if (prevTurn === "white") {
         this.setState({
           pikaWinCount: true
-        });
+        })
       }
     }
-  };
+  }
   render() {
     return (
       <div className="App">
@@ -97,7 +99,7 @@ class App extends Component {
                       <div
                         className="col"
                         onClick={() => {
-                          this.handleClick(row, col);
+                          this.handleClick(row, col)
                         }}
                       >
                         {this.state.borad[row][col] && !this.state.reset ? (
@@ -112,10 +114,10 @@ class App extends Component {
                           />
                         ) : null}
                       </div>
-                    );
+                    )
                   })}
                 </div>
-              );
+              )
             })}
           </div>
           <div className="Omok__Score" style={{ marginLeft: "55px" }}>
@@ -150,7 +152,7 @@ class App extends Component {
           </div>
         </div>
       </div>
-    );
+    )
   }
 }
-export default App;
+export default App
