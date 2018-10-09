@@ -11,6 +11,9 @@ import pikaStone from "./pika.png"
 import jmbStone from "./jmb.png"
 import jmbWin from "./jmbWin.png"
 import pikaWin from "./pikaWin.png"
+
+import ScoreBoard from "./ScoreBoard"
+
 //TODO : black -> jmb , white -> pika
 const initialState = {
   size: 16,
@@ -27,7 +30,9 @@ const initialState = {
   logSelectedCol: [],
 
   deleteRow: null,
-  deleteCol: null
+  deleteCol: null,
+  USER1: "",
+  USER2: ""
 }
 class App extends Component {
   constructor(props) {
@@ -58,6 +63,11 @@ class App extends Component {
         logSelectedCol: [...prevState.logSelectedCol, col],
         turn: prevState.turn === "black" ? "white" : "black"
       }
+    })
+  }
+  handlChange = e => {
+    this.setState({
+      [e.target.name]: e.target.value
     })
   }
   resetOneStage = () => {
@@ -164,34 +174,31 @@ class App extends Component {
               )
             })}
           </div>
-          <div className="Omok__Score" style={{ marginLeft: "55px" }}>
-            <h2>Who won?</h2>
-            <table>
-              <thead>
-                <tr>
-                  <th>JMB</th>
-                  <th>Pika</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td
-                    style={{
-                      backgroundImage: this.state.jmbWinCount
-                        ? `url(${jmbWin})`
-                        : null
-                    }}
-                  />
-                  <td
-                    style={{
-                      backgroundImage: this.state.pikaWinCount
-                        ? `url(${pikaWin})`
-                        : null
-                    }}
-                  />
-                </tr>
-              </tbody>
-            </table>
+          <div>
+            <div className="Omok__input__user">
+              <form>
+                <input
+                  className="form-control"
+                  name="USER1"
+                  onClick={this.handlChange}
+                />
+                <input
+                  className="form-control"
+                  name="USER2"
+                  onClick={this.handlChange}
+                />
+              </form>
+            </div>
+            <div className="Omok__Score" style={{ marginLeft: "55px" }}>
+              {this.state.USER1 && this.state.USER2 ? (
+                <ScoreBoard
+                  user1={this.state.USER1}
+                  user2={this.state.USER2}
+                  user1Win={this.state.jmbWinCount}
+                  user2Wing={this.state.pikaWinCount}
+                />
+              ) : null}
+            </div>
             <button className="btn btn-default" onClick={this.resetOneStage}>
               Reset One Stage
             </button>
