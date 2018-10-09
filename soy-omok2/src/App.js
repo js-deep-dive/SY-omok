@@ -9,8 +9,6 @@ import logo from "./logo.svg"
 import "./App.css"
 import pikaStone from "./pika.png"
 import jmbStone from "./jmb.png"
-import jmbWin from "./jmbWin.png"
-import pikaWin from "./pikaWin.png"
 
 import ScoreBoard from "./ScoreBoard"
 
@@ -103,9 +101,15 @@ class App extends Component {
       }
     })
   }
+  onFormSubmit = e => {
+    e.preventDefault()
+    this.setState({
+      USER1: "",
+      USER2: ""
+    })
+  }
   checkWinner = () => {
     //아마 turn 은 반대로 넣어주어야 겠구나...
-
     const {
       size,
       turn,
@@ -176,16 +180,19 @@ class App extends Component {
           </div>
           <div>
             <div className="Omok__input__user">
-              <form>
+              <form onSubmit={this.onFormSubmit}>
+                {/* TODO : boooool check... submit*/}
                 <input
                   className="form-control"
                   name="USER1"
-                  onClick={this.handlChange}
+                  value={this.state.USER1}
+                  onChange={this.handlChange}
                 />
                 <input
                   className="form-control"
                   name="USER2"
-                  onClick={this.handlChange}
+                  value={this.state.USER2}
+                  onChange={this.handlChange}
                 />
               </form>
             </div>
@@ -195,7 +202,7 @@ class App extends Component {
                   user1={this.state.USER1}
                   user2={this.state.USER2}
                   user1Win={this.state.jmbWinCount}
-                  user2Wing={this.state.pikaWinCount}
+                  user2Win={this.state.pikaWinCount}
                 />
               ) : null}
             </div>
