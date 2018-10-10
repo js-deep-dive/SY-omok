@@ -15,7 +15,7 @@ class ScoreBoard extends PureComponent {
   }
   render() {
     return (
-      <div className="Omok__Score" style={{ marginLeft: "55px" }}>
+      <div className="Omok__Score">
         <h2>Who won?</h2>
         <table>
           <thead>

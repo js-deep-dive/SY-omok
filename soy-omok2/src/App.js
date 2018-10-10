@@ -189,24 +189,30 @@ class App extends Component {
               )
             })}
           </div>
-          <div>
+          <div style={{ marginLeft: "100px" }}>
             <div className="Omok__input__user">
               <h2>Enter User Info</h2>
               <form className="input-group" onSubmit={this.onFormSubmit}>
                 {/* TODO : boooool check... submit*/}
-                <div />
-                <input
-                  className="form-control"
-                  name="user1"
-                  value={this.state.user1}
-                  onChange={this.handlChange}
-                />
-                <input
-                  className="form-control"
-                  name="user2"
-                  value={this.state.user2}
-                  onChange={this.handlChange}
-                />
+                <div className="Omok__input__Wrapper">
+                  <div>
+                    <input
+                      className="form-control"
+                      name="user1"
+                      value={this.state.user1}
+                      onChange={this.handlChange}
+                    />
+                  </div>
+                  <div>
+                    <input
+                      className="form-control"
+                      name="user2"
+                      value={this.state.user2}
+                      onChange={this.handlChange}
+                    />
+                  </div>
+                </div>
+
                 <button type="submit" className="btn btn-secondary">
                   Submit
                 </button>
@@ -217,7 +223,7 @@ class App extends Component {
               this.state.user2,
               this.state.sendUsrInfo
             )}
-            <div className="Omok__Score" style={{ marginLeft: "55px" }}>
+            <div className="Omok__Score">
               {/* require : Name of user1, user2 And submit complete.... */}
               {this.state.passUserName1 &&
               this.state.passUserName2 &&
