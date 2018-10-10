@@ -47,6 +47,9 @@ class App extends Component {
   }
   handleClick = (row, col) => {
     //TODO : change Immutability
+    if (!this.state.sendUsrInfo) {
+      return
+    }
     console.log("selected", row, col)
     let changeBoard = this.state.borad
     //alreay fill, return;
@@ -129,15 +132,7 @@ class App extends Component {
   }
   checkWinner = () => {
     //아마 turn 은 반대로 넣어주어야 겠구나...
-    const {
-      size,
-      turn,
-      borad,
-      selctedRow,
-      selctedCol,
-      jmbWinCount,
-      pikaWinCount
-    } = this.state
+    const { size, turn, borad, selctedRow, selctedCol } = this.state
     const prevTurn = turn === "black" ? "white" : "black"
     //console.log("prevTurn  ", prevTurn);
     if (
