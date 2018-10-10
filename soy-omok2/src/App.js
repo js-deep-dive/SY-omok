@@ -24,13 +24,15 @@ const initialState = {
   reset: true,
 
   //second hw
+  //선택된 row, col을 저장해서 하나씩 빼면서 지워주기.. pop pop pop
   logSelectedRow: [],
   logSelectedCol: [],
 
-  deleteRow: null,
-  deleteCol: null,
-  USER1: "",
-  USER2: ""
+  deleteRow: null, // 어디를 지워야 할지 숫자 저장
+  deleteCol: null, // 어디를 지워야 할지 숫자 저장
+  user1: "",
+  user2: "",
+  sendUsrInfo: false
 }
 class App extends Component {
   constructor(props) {
@@ -104,8 +106,9 @@ class App extends Component {
   onFormSubmit = e => {
     e.preventDefault()
     this.setState({
-      USER1: "",
-      USER2: ""
+      user1: " ",
+      user2: " ",
+      sendUsrInfo: true
     })
   }
   checkWinner = () => {
@@ -180,27 +183,40 @@ class App extends Component {
           </div>
           <div>
             <div className="Omok__input__user">
-              <form onSubmit={this.onFormSubmit}>
+              <h2>Enter User Info</h2>
+              <form className="input-group" onSubmit={this.onFormSubmit}>
                 {/* TODO : boooool check... submit*/}
+                <div />
                 <input
                   className="form-control"
-                  name="USER1"
-                  value={this.state.USER1}
+                  name="user1"
+                  value={this.state.user1}
                   onChange={this.handlChange}
                 />
                 <input
                   className="form-control"
-                  name="USER2"
-                  value={this.state.USER2}
+                  name="user2"
+                  value={this.state.user2}
                   onChange={this.handlChange}
                 />
+                <button type="submit" className="btn btn-secondary">
+                  Submit
+                </button>
               </form>
             </div>
+            {console.log(
+              this.state.user1,
+              this.state.user2,
+              this.state.sendUsrInfo
+            )}
             <div className="Omok__Score" style={{ marginLeft: "55px" }}>
-              {this.state.USER1 && this.state.USER2 ? (
+              {/* require : Name of user1, user2 And submit complete.... */}
+              {this.state.user1 &&
+              this.state.user2 &&
+              this.state.sendUsrInfo ? (
                 <ScoreBoard
-                  user1={this.state.USER1}
-                  user2={this.state.USER2}
+                  user1={this.state.user1}
+                  user2={this.state.user2}
                   user1Win={this.state.jmbWinCount}
                   user2Win={this.state.pikaWinCount}
                 />
