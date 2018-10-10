@@ -32,6 +32,9 @@ const initialState = {
   deleteCol: null, // 어디를 지워야 할지 숫자 저장
   user1: "",
   user2: "",
+  //pass name for scoreboard
+  passUserName1: "",
+  passUserName2: "",
   sendUsrInfo: false
 }
 class App extends Component {
@@ -103,12 +106,17 @@ class App extends Component {
       }
     })
   }
+
   onFormSubmit = e => {
     e.preventDefault()
-    this.setState({
-      user1: " ",
-      user2: " ",
-      sendUsrInfo: true
+    this.setState(prevState => {
+      return {
+        passUserName1: prevState.user1,
+        passUserName2: prevState.user2,
+        user1: "",
+        user2: "",
+        sendUsrInfo: true
+      }
     })
   }
   checkWinner = () => {
@@ -211,12 +219,12 @@ class App extends Component {
             )}
             <div className="Omok__Score" style={{ marginLeft: "55px" }}>
               {/* require : Name of user1, user2 And submit complete.... */}
-              {this.state.user1 &&
-              this.state.user2 &&
+              {this.state.passUserName1 &&
+              this.state.passUserName2 &&
               this.state.sendUsrInfo ? (
                 <ScoreBoard
-                  user1={this.state.user1}
-                  user2={this.state.user2}
+                  user1={this.state.passUserName1}
+                  user2={this.state.passUserName2}
                   user1Win={this.state.jmbWinCount}
                   user2Win={this.state.pikaWinCount}
                 />
