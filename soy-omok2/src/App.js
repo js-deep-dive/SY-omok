@@ -75,6 +75,9 @@ class App extends Component {
   }
   resetOneStage = () => {
     //TODO : change Immutability
+    if (this.state.logSelectedRow.length === 0) {
+      return
+    }
     let array = [...this.state.borad] // make a separate copy of the array
     const RowIndex = this.state.logSelectedRow[
       this.state.logSelectedRow.length - 1
@@ -82,6 +85,11 @@ class App extends Component {
     const ColIndex = this.state.logSelectedCol[
       this.state.logSelectedCol.length - 1
     ]
+    console.log(
+      "this.state.logSelectedRow.length ",
+      this.state.logSelectedRow.length
+    )
+
     //array.splice(index, 1)
     array[RowIndex][ColIndex] = null
     this.setState(prevState => {
@@ -218,11 +226,6 @@ class App extends Component {
                 </button>
               </form>
             </div>
-            {console.log(
-              this.state.user1,
-              this.state.user2,
-              this.state.sendUsrInfo
-            )}
             <div className="Omok__Score">
               {/* require : Name of user1, user2 And submit complete.... */}
               {this.state.passUserName1 &&
