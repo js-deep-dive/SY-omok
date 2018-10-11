@@ -23,6 +23,74 @@
 }
 
 @keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Custom CSS */
+/* TODO : SASS... T.T */
+.Omok {
+  display: flex;
+}
+.row {
+  display: flex;
+}
+.col {
+  background-image: url("./cell.png");
+  height: 3rem;
+  width: 3rem;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  display: inline-flex;
+}
+.col__stone {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 100%;
+  display: block;
+  margin: auto;
+  background-size: cover;
+}
+table {
+  border-collapse: collapse;
+  text-align: left;
+  line-height: 1.5;
+}
+table thead th {
+  padding: 10px;
+  font-weight: bold;
+  vertical-align: top;
+  color: #369;
+  border-bottom: 3px solid #036;
+}
+table tbody th {
+  width: 150px;
+  padding: 10px;
+  font-weight: bold;
+  vertical-align: top;
+  border-bottom: 1px solid #ccc;
+  background: #f3f6f7;
+}
+table tbody tr {
+  height: 30em;
+}
+table td {
+  width: 350px;
+  padding: 10px;
+  vertical-align: top;
+  border: 1px solid #ccc;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+button {
+  margin-top: 5em;
+  border-radius: 10%;
+  padding: 10px;
 }
