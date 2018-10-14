@@ -1,9 +1,9 @@
 import React, { Component } from "react"
 import {
-  checkVerticalWinner,
-  checkHorizontalWinner,
+  checkAsecDiagoWinner,
   checkDescDiagonalWinner,
-  checkAsecDiagoWinner
+  checkHorizontalWinner,
+  checkVerticalWinner
 } from "./util/helper"
 import logo from "./logo.svg"
 import "./App.css"
@@ -18,7 +18,7 @@ const initialState = {
   borad: Array.from(Array(16), () => Array(16).fill(null)), // 2d array
   selctedRow: null,
   selctedCol: null,
-  turn: "black", //blakc first
+  turn: "black", //black first
   jmbWinCount: false,
   pikaWinCount: false,
   reset: true,
@@ -50,7 +50,7 @@ class App extends Component {
     if (!this.state.sendUsrInfo) {
       return
     }
-    console.log("selected", row, col)
+    //console.log("selected", row, col)
     let changeBoard = this.state.borad
     //alreay fill, return;
     if (changeBoard[row][col]) {
@@ -88,10 +88,6 @@ class App extends Component {
     const ColIndex = this.state.logSelectedCol[
       this.state.logSelectedCol.length - 1
     ]
-    console.log(
-      "this.state.logSelectedRow.length ",
-      this.state.logSelectedRow.length
-    )
 
     //array.splice(index, 1)
     array[RowIndex][ColIndex] = null

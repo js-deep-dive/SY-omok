@@ -28,7 +28,7 @@ class ScoreBoard extends PureComponent {
             <tr>
               <td
                 style={{
-                  backgroundImage: this.props.user1Win ? `url(${jmbWin})` : null
+                  backgroundImage: this.props.user1Win && `url(${jmbWin})`
                 }}
               />
               <td
